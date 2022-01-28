@@ -9,9 +9,9 @@ namespace SnakeMan
     internal abstract class GameObject : Position
     {
         // TODO
-        public char appearance;
+        public string appearance;
 
-        public GameObject(char appearance, int x, int y) : base(x, y)
+        public GameObject(string appearance, int x, int y) : base(x, y)
         {
             this.appearance = appearance;
         }

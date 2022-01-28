@@ -37,10 +37,9 @@ namespace SnakeMan
                 {
                     score++;
                     var rand = new Random();
-                    gameObject.x = (int)rand.Next(1, Console.WindowWidth);
-                    gameObject.y = (int)rand.Next(1, Console.WindowHeight);
+                    gameObject.x = (int)rand.Next(0, Program.worldWidth);
+                    gameObject.y = (int)rand.Next(0, Program.worldHeight);
                 }
-  
             }
         }
     }

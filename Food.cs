@@ -8,7 +8,7 @@ namespace SnakeMan
 {
     internal class Food : GameObject
     {
-        public Food(char appearance, int x, int y) : base(appearance, x, y)
+        public Food(string appearance, int x, int y) : base(appearance, x, y)
         {
 
         }

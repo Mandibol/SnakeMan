@@ -2,6 +2,15 @@
 
 class Program
 {
+    //Settings
+    internal static readonly int worldWidth = 24;
+    internal static readonly int worldHeight = 24;
+    internal static readonly int marginLeft = 1;
+    internal static readonly int marginRight = 1;
+    internal static readonly int marginTop = 3;
+    internal static readonly int marginDown = 1;
+    internal static readonly int displayWidth = worldWidth * 2 + marginLeft + marginRight;
+    internal static readonly int displayHeight = worldHeight + marginTop + marginDown;
 
     /// <summary>
     /// Checks Console to see if a keyboard key has been pressed, if so returns it, otherwise NoName.
@@ -11,36 +20,33 @@ class Program
     static void Loop()
     {
         //Backgrunden och HUD ritas ut.
-        Console.WriteLine("╔══════════════════════════════════════════╗");
-        Console.WriteLine("║                 LABYRINT                 ║");
-        Console.WriteLine("╠══════════════════════════════════════════╣");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("║                                          ║");
-        Console.WriteLine("╠══════════════════════════════════════════╣");
-        Console.WriteLine("║ Arrows : Move                 Esc : Exit ║");
-        Console.WriteLine("╚══════════════════════════════════════════╝");
+        for (int y = 0; y < displayHeight; y++)
+        {
+            for (int x = 0; x < displayWidth; x++)
+            {
+                Console.SetCursorPosition(x, y);
+                if (x == 21 && y == 1) { Console.Write("SNAKEMAN"); }
+                else if (x == 0 && y == 0) { Console.Write("╔"); }
+                else if (x == displayWidth - 1 && y == 0) { Console.Write("╗"); }
+                else if (x == 0 && y == 2) { Console.Write("╠"); }
+                else if (x == displayWidth - 1 && y == 2) { Console.Write("╣"); }
+                else if (x == 0 && y == displayHeight - 1) { Console.Write("╚"); }
+                else if (x == displayWidth - 1 && y == displayHeight - 1) { Console.Write("╝"); }
+                else if (y == displayHeight-1 || y == 0 || y == 2) { Console.Write("═"); }
+                else if (x == 0 || x == displayWidth-1) { Console.Write("║"); }
+            }
+        }
+
+
         // Initialisera spelet
-        const int frameRate = 6;
-        GameWorld world = new GameWorld(50,25);
+        const int frameRate = 10;
+        GameWorld world = new GameWorld(displayWidth, displayHeight);
         ConsoleRenderer renderer = new ConsoleRenderer(world);
 
         // TODO Skapa spelare och andra objekt etc. genom korrekta anrop till vår GameWorld-instans
         // ...
-        Player player = new Player('■', 25, 10);
-        Food food = new Food('@', 10, 5);
+        Player player = new Player("██", 12, 12);
+        Food food = new Food("@@", 10, 5);
         world.gameObjects.Add(player);
         world.gameObjects.Add(food);
 
@@ -76,8 +82,6 @@ class Program
                     // ...
             }
 
-
-
             // Uppdatera världen och rendera om
             renderer.RenderBlank();
             world.Update();
@@ -94,8 +98,6 @@ class Program
             }
         }
     }
-
-
 
     static void Main(string[] args)
     {

@@ -8,7 +8,7 @@ namespace SnakeMan
 {
     internal class Player : GameObject
     {
-        public Player(char appearance, int x, int y) : base(appearance, x, y)
+        public Player(string appearance, int x, int y) : base(appearance, x, y)
         { 
         
         }
@@ -44,11 +44,11 @@ namespace SnakeMan
                     break;
             }
 
-            if (x < 1 || x >= Console.WindowWidth-1)
+            if (x < 0 || x >= Program.worldWidth)
             {
                 x = previousX;
             }
-            if (y < 2 || y >= Console.WindowHeight-1)
+            else if (y < 0 || y >= Program.worldHeight)
             {
                 y = previousY;
             }
