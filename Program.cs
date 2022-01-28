@@ -3,8 +3,8 @@
 class Program
 {
     //Settings
-    internal static readonly int worldWidth = 24;
-    internal static readonly int worldHeight = 24;
+    internal static readonly int worldWidth = 32;
+    internal static readonly int worldHeight = 32;
     internal static readonly int marginLeft = 1;
     internal static readonly int marginRight = 1;
     internal static readonly int marginTop = 3;
@@ -19,25 +19,6 @@ class Program
 
     static void Loop()
     {
-        //Backgrunden och HUD ritas ut.
-        for (int y = 0; y < displayHeight; y++)
-        {
-            for (int x = 0; x < displayWidth; x++)
-            {
-                Console.SetCursorPosition(x, y);
-                if (x == 21 && y == 1) { Console.Write("SNAKEMAN"); }
-                else if (x == 0 && y == 0) { Console.Write("╔"); }
-                else if (x == displayWidth - 1 && y == 0) { Console.Write("╗"); }
-                else if (x == 0 && y == 2) { Console.Write("╠"); }
-                else if (x == displayWidth - 1 && y == 2) { Console.Write("╣"); }
-                else if (x == 0 && y == displayHeight - 1) { Console.Write("╚"); }
-                else if (x == displayWidth - 1 && y == displayHeight - 1) { Console.Write("╝"); }
-                else if (y == displayHeight-1 || y == 0 || y == 2) { Console.Write("═"); }
-                else if (x == 0 || x == displayWidth-1) { Console.Write("║"); }
-            }
-        }
-
-
         // Initialisera spelet
         const int frameRate = 10;
         GameWorld world = new GameWorld(displayWidth, displayHeight);

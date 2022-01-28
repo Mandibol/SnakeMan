@@ -22,7 +22,7 @@ namespace SnakeMan
                 for (int x = 0; x < world.width; x++)
                 {
                     Console.SetCursorPosition(x, y);
-                    if (x == 21 && y == 1) { Console.Write("SNAKEMAN"); }
+                    if (x == Program.displayWidth/2 - 4 && y == 1) { Console.Write("SNAKEMAN"); }
                     else if (x == 0 && y == 0) { Console.Write("╔"); }
                     else if (x == world.width - 1 && y == 0) { Console.Write("╗"); }
                     else if (x == 0 && y == 2) { Console.Write("╠"); }
