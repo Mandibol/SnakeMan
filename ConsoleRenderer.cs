@@ -51,10 +51,12 @@ namespace SnakeMan
             // Använd Console.SetCursorPosition(int x, int y) and Console.Write(char)
             foreach (var gameObject in world.gameObjects)
             {
+                Console.ForegroundColor = (ConsoleColor)gameObject.color;
                 Console.SetCursorPosition(gameObject.x * 2 + Program.marginLeft, gameObject.y + Program.marginTop);
                 Console.Write(gameObject.appearance);
             }
             Console.SetCursorPosition(1, 1);
+            Console.ForegroundColor = ConsoleColor.White;
             Console.Write("Score: " + world.score);
         }
     }

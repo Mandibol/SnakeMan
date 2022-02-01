@@ -8,9 +8,10 @@ namespace SnakeMan
 {
     internal class Player : GameObject
     {
-        public Player(string appearance, int x, int y) : base(appearance, x, y)
-        { 
-        
+ 
+        public Player(string appearance, int x, int y, GameWorld world) : base(appearance, x, y, world)
+        {
+            color = 10;
         }
 
         public enum Direction
@@ -25,8 +26,8 @@ namespace SnakeMan
 
         public override void Update()
         {
-            int previousX = x;
-            int previousY = y;
+            previousX = x;
+            previousY = y;
 
             switch (direction)
             {
@@ -44,13 +45,40 @@ namespace SnakeMan
                     break;
             }
 
-            if (x < 0 || x >= Program.worldWidth)
+            // Out of bounds Check
+            if (x < 0)
             {
-                x = previousX;
+                x = Program.worldWidth-1;
             }
-            else if (y < 0 || y >= Program.worldHeight)
+            else if (x >= Program.worldWidth) 
             {
-                y = previousY;
+                x = 0;
+            }
+
+            else if (y < 0)
+            {
+                y = Program.worldHeight-1;
+            }
+            else if (y >= Program.worldHeight)
+            {
+                y = 0;
+            }
+
+            // Collision Check food, svar : object food or null
+            GameObject collison = world.gameObjects.Find(obj => obj.x == x && obj.y == y && obj is Food);
+            if (collison != null)
+            {
+                world.score++;
+                //Add Tail
+                Tail tail = new Tail("██", previousX, previousY, world);
+                world.gameObjects.Add(tail);
+            }
+
+            // Collision Check Tail
+            collison = world.gameObjects.Find(obj => obj.x == x && obj.y == y && obj is Tail);
+            if (collison != null)
+            {
+                Program.running = false;
             }
         }
     }

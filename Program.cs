@@ -11,6 +11,7 @@ class Program
     internal static readonly int marginDown = 1;
     internal static readonly int displayWidth = worldWidth * 2 + marginLeft + marginRight;
     internal static readonly int displayHeight = worldHeight + marginTop + marginDown;
+    internal static bool running = true;
 
     /// <summary>
     /// Checks Console to see if a keyboard key has been pressed, if so returns it, otherwise NoName.
@@ -20,19 +21,18 @@ class Program
     static void Loop()
     {
         // Initialisera spelet
-        const int frameRate = 10;
+        const int frameRate = 8;
         GameWorld world = new GameWorld(displayWidth, displayHeight);
         ConsoleRenderer renderer = new ConsoleRenderer(world);
 
         // TODO Skapa spelare och andra objekt etc. genom korrekta anrop till vår GameWorld-instans
         // ...
-        Player player = new Player("██", 12, 12);
-        Food food = new Food("@@", 10, 5);
+        Player player = new Player("██", worldWidth/2, worldHeight/2, world);
+        Food food = new Food("@@", 10, 5, world);
         world.gameObjects.Add(player);
         world.gameObjects.Add(food);
 
         // Huvudloopen
-        bool running = true;
         while (running)
         {
             // Kom ihåg vad klockan var i början
