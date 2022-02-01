@@ -78,6 +78,14 @@ class Program
                 Thread.Sleep((int)frameTime);
             }
         }
+
+        Console.SetCursorPosition(displayWidth/2 - 8, displayHeight/2);
+        Console.Write("Your Score: " + world.score);
+        // Tryck Enter för att avsluta
+        Console.SetCursorPosition(displayWidth / 2 - 15, displayHeight / 2 + 1);
+        Console.Write("Tryck <Escape> För att avsluta");
+        while (Console.ReadKey(true).Key != ConsoleKey.Escape) { }
+
     }
 
     static void Main(string[] args)
