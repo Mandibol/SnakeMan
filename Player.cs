@@ -11,12 +11,10 @@ namespace SnakeMan
     /// </summary>
     internal class Player : GameObject
     {
-
-
         /// <param name="world"> We are using World for reference in gameWorld, in this class(player) we check for collison </param>
         public Player(string appearance, int x, int y, GameWorld world) : base(appearance, x, y, world)
         {
-            color = 10;
+            color = ConsoleColor.Green;
         }
         
         /// <summary>
@@ -92,18 +90,18 @@ namespace SnakeMan
             // then wrap player position
             if (x < 0)
             {
-                x = Program.worldWidth - 1;
+                x = world.width - 1;
             }
-            else if (x >= Program.worldWidth)
+            else if (x >= world.width)
             {
                 x = 0;
             }
 
             else if (y < 0)
             {
-                y = Program.worldHeight - 1;
+                y = world.height - 1;
             }
-            else if (y >= Program.worldHeight)
+            else if (y >= world.height)
             {
                 y = 0;
             }
@@ -113,7 +111,7 @@ namespace SnakeMan
             GameObject collison = world.gameObjects.Find(obj => obj.x == x && obj.y == y && obj is Tail);
             if (collison != null)
             {
-                Program.running = false;
+                world.running = false;
             }
 
             // Checks GameWorld.gameObjects list for the first Food that shares same position as this object.

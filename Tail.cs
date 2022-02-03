@@ -11,6 +11,7 @@ namespace SnakeMan
     /// </summary>
     internal class Tail : GameObject
     {
+        GameObject before;
         /// <summary>
         /// Set the apperance, starting position and gives a reference to the gameworld.
         /// </summary>
@@ -20,35 +21,30 @@ namespace SnakeMan
         /// <param name="world"> Refrence to the Gameworld, for access to variables</param>
         public Tail(string appearance, int x, int y, GameWorld world) : base(appearance, x, y, world)
         {
-            color = 10;
+            color = ConsoleColor.Green;
             id = world.score;
-        }
-       
-        public override void Update()
-        {
-            previousX = x;
-            previousY = y;
 
-            // Makes so the firt tail gets the players previous coordinates.
-            // And the tails created follows the previous tail in the lead.
+
             if (id == 1)
             {
-                GameObject nextTail = world.gameObjects.Find(obj => obj is Player);
-                if (nextTail != null)
-                {
-                    x = nextTail.previousX;
-                    y = nextTail.previousY;
-                }
+                before = world.gameObjects.Find(obj => obj is Player);
             }
             else
             {
-                GameObject nextTail = world.gameObjects.Find(obj => obj.id == id - 1 && obj is Tail);
-                if (nextTail != null)
-                {
-                    x = nextTail.previousX;
-                    y = nextTail.previousY;
-                }
+                before = world.gameObjects.Find(obj => obj.id == id - 1 && obj is Tail);
             }
+
+        }
+
+        public override void Update()
+        {
+            // Makes so the firt tail gets the players previous coordinates.
+            // And the tails created follows the previous tail in the lead.
+            previousX = x;
+            previousY = y;
+
+            x = before.previousX; 
+            y = before.previousY;
         }
     }
 }

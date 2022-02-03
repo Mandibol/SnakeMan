@@ -14,13 +14,18 @@ namespace SnakeMan
     {
         public int width;
         public int height;
+        public readonly int marginLeft = 1; // MarginLeft Outside the playing area
+        public readonly int marginRight = 1; //MarginRight  Outside the playing area
+        public readonly int marginTop = 3; //marginTop Outside the playing area
+        public readonly int marginDown = 1; //marginDown Outside the playing area
         public int score;
+        public bool running = true;
 
         /// <summary> 
-        /// He have to write here 
+        /// Set the size of the display 
         /// </summary>
-        ///  <param name = "width"> BLA BLA BLA</param>
-        ///  <param name = "height">Hej</param>
+        ///  <param name = "width"> Display width</param>
+        ///  <param name = "height">Display Height</param>
         public GameWorld(int width, int height) {
             this.width = width;
             this.height = height;

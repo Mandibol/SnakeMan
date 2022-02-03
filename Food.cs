@@ -17,7 +17,7 @@ namespace SnakeMan
         /// <param name="world"> Refrence to the Gameworld, for access to variables</param>
         public Food(string appearance, int x, int y, GameWorld world) : base(appearance, x, y, world)
         {
-            color = 12;
+            color = ConsoleColor.Red;
         }
  
         public override void Update()
@@ -34,8 +34,8 @@ namespace SnakeMan
                 {
                     count++;
                     var rand = new Random();
-                    testX = (int)rand.Next(0, Program.worldWidth);
-                    testY = (int)rand.Next(0, Program.worldHeight);
+                    testX = (int)rand.Next(0, world.width);
+                    testY = (int)rand.Next(0, world.height);
                     collison = world.gameObjects.Find(obj => obj.x == testX && obj.y == testY);
                 }
                 while (collison != null || count > 99);

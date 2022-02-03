@@ -13,9 +13,9 @@ namespace SnakeMan
     internal abstract class GameObject : Position
     {
      
-        public string appearance;
-        public GameWorld world; // A string of chars to represent the Gameobjects, when rendered
-        public int color; // Coloring the representing char, such as Snake or Food
+        public string appearance; // A string of chars to represent the Gameobjects, when rendered
+        public GameWorld world; // reference to GameWorld
+        public ConsoleColor color; // Coloring the representing char, such as Snake or Food
         public int id; // ID is used for identifying Tail, or food or other gameobjects
         public int previousX; // Previous x coordinate for gameObject
         public int previousY; // Previous y coordinate for gameObject
