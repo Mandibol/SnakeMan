@@ -144,7 +144,7 @@ class Program
         Console.SetCursorPosition(Console.WindowWidth / 2 - message.Length / 2, Console.WindowHeight / 2);
         Console.Write("                           ");
 
-               //Start the GameLoop
+        //Start the GameLoop
         Loop();
     }
 }
