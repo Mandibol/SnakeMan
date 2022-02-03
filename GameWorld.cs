@@ -18,8 +18,9 @@ namespace SnakeMan
         public readonly int marginRight = 1; //MarginRight  Outside the playing area
         public readonly int marginTop = 3; //marginTop Outside the playing area
         public readonly int marginDown = 1; //marginDown Outside the playing area
-        public int score;
-        public bool running = true;
+        public int score; //Keep track of number of Food Collected
+        public bool running = true; // Ends GameLoop if false
+        public int frameRate = 10;  //  Adjusting the speed of the game, Defualt 10
 
         /// <summary> 
         /// Set the size of the display 

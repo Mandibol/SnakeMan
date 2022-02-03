@@ -22,7 +22,6 @@ class Program
     static extern IntPtr GetConsoleWindow();
 
     //Settings
-    internal static int frameRate = 10; //  Adjusting the speed of the game, Defualt 10
     internal static ConsoleKey key; // keyInput from user
     internal static int GameWidth = 24;
     internal static int GameHeight = 24;
@@ -72,7 +71,7 @@ class Program
 
      
             // Check how long time it took
-            double frameTime = Math.Ceiling((1000.0 / frameRate) - (DateTime.Now - before).TotalMilliseconds);
+            double frameTime = Math.Ceiling((1000.0 / world.frameRate) - (DateTime.Now - before).TotalMilliseconds);
             if (frameTime > 0)
             {
             
@@ -101,9 +100,12 @@ class Program
     static void Main(string[] args)
     {
         //Set window Size
-        Console.WindowWidth = GameWidth * 2 + 2;
-        Console.WindowHeight = GameHeight + 4;
-
+        if (OperatingSystem.IsWindows())
+        {
+            Console.WindowWidth = GameWidth * 2 + 2;
+            Console.WindowHeight = GameHeight + 4;
+        }
+        
         //Disable Window rezising and lock window size
         DeleteMenu(GetSystemMenu(GetConsoleWindow(), false), SC_MINIMIZE, MF_BYCOMMAND);
         DeleteMenu(GetSystemMenu(GetConsoleWindow(), false), SC_MAXIMIZE, MF_BYCOMMAND);

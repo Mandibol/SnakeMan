@@ -19,7 +19,7 @@ namespace SnakeMan
         {
             color = ConsoleColor.Red;
         }
- 
+
         public override void Update()
         {
             // Collision with player
@@ -39,7 +39,7 @@ namespace SnakeMan
                     collison = world.gameObjects.Find(obj => obj.x == testX && obj.y == testY);
                 }
                 while (collison != null || count > 99);
-
+                    
                 x = testX;
                 y = testY;
             }

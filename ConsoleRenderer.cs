@@ -19,7 +19,7 @@ namespace SnakeMan
         {
             this.world = gameWorld;
             displayWidth = world.width * 2 + world.marginLeft + world.marginRight;
-            displayHeight= world.height + world.marginTop + world.marginDown; 
+            displayHeight= world.height + world.marginTop + world.marginDown;
         }
         /// <summary>
         /// Loops through all instances of <see cref="GameObject"/> and Writes over them with Blank
@@ -52,7 +52,7 @@ namespace SnakeMan
             Console.Write("Score: " + world.score);
             //Render Speed
             Console.SetCursorPosition(displayWidth - 10 , 1);
-            Console.Write("Speed: " + Program.frameRate);
+            Console.Write("Speed: " + world.frameRate);
         }
     }
 }

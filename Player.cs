@@ -120,7 +120,7 @@ namespace SnakeMan
             if (collison != null)
             {
                 world.score++;
-                Program.frameRate = 10 + world.score / 10;
+                world.frameRate = 10 + world.score / 3;
                 //Create a new Tail
                 Tail tail = new("██", previousX, previousY, world);
                 world.gameObjects.Add(tail);
